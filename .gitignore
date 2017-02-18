@@ -1,0 +1,13 @@
+bin
+build
+.gradle
+*.class
+*.MF
+*.log
+
+# ignore IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea
+out

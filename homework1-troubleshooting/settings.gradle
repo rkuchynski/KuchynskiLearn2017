@@ -1,0 +1,5 @@
+rootProject.name='homework1-troubleshooting'
+
+include 'deadlock-task'
+include 'out-of-memory-task'
+include 'slow-thread-lock-task'
