@@ -26,6 +26,7 @@ public class DeadlockApplication {
     public static void main(String[] args) throws InterruptedException, IOException {
         SharedResourceHolder sharedResourceHolder = new SharedResourceHolder(THREAD_COUNT);
         String dumpFilePath = System.getProperty(DUMP_PATH_PARAM, DEFAULT_DUMP_PATH);
+        LOGGER.info("Add parameter -Ddeadlock.dump.path to customize where to store the thread dumps.");
 
         for(int i = 0; i < THREAD_COUNT; i++) {
             Thread thread = new TwoResourceThread(i, sharedResourceHolder);
