@@ -1,1 +1,3 @@
 mainClassName = 'com.epam.mentoring.homework1.MemoryConsumingApplication'
+applicationDefaultJvmArgs = ['-Xmx512m', '-XX:+HeapDumpOnOutOfMemoryError',
+                             '-XX:HeapDumpPath=\"d:\\temp\\MemoryConsumingApplication.hprof\"']
