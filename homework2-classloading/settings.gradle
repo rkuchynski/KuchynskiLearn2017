@@ -1,0 +1,5 @@
+rootProject.name = 'homework2-classloading'
+
+include ':plugin-api'
+include ':plugin-dist'
+include ':plugin-web'

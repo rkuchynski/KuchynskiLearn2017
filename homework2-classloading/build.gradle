@@ -1,0 +1,19 @@
+allprojects {
+	apply plugin: 'idea'
+	
+	group = 'com.epam.mentoring.homework2'
+}
+
+subprojects {
+	apply plugin: 'java'
+	
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		compile "commons-collections:commons-collections:${commonsCollectionsVersion}"
+		compile "org.apache.commons:commons-lang3:${commonsLangVersion}"
+		compile "com.google.guava:guava:${guavaVersion}"
+	}
+}
