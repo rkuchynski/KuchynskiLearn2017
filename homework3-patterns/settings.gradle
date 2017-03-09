@@ -1,0 +1,4 @@
+rootProject.name = 'homework3-patterns'
+
+include ':data-wrapper-app'
+include ':banking-app'
