@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
 /**
- *
+ * Plugin implementation that changes passed text using passed regexp.
  * <p/>
  * Date: 02/27/2017
  *
@@ -19,7 +19,7 @@ import java.util.regex.PatternSyntaxException;
  */
 public class RegexReplacePlugin implements IPlugin {
 
-    private static final String ID = "com.epam.mentoring.plugins.RegexReplacePlugin";
+    private static final String ID = "RegexReplacePlugin";
     private static final String RESULT = "Text after regexp replacement";
     private static final String ERROR = "If any operation fails";
 

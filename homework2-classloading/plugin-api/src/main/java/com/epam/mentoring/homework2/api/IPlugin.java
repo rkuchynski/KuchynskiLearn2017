@@ -3,7 +3,7 @@ package com.epam.mentoring.homework2.api;
 import java.util.Map;
 
 /**
- *
+ * Plugin interface.
  * <p/>
  * Date: 02/27/2017
  *

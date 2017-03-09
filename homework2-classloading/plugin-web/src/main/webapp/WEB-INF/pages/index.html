@@ -1,0 +1,32 @@
+<h1>Readme</h1>
+
+<table border="2" bordercolor="black">
+    <thead>
+        <tr>
+            <td><b>URL</b></td>
+            <td><b>Result</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>host:port/plugins/all</td>
+            <td>IDs of all attached plugins</td>
+        </tr>
+        <tr>
+            <td>host:port/plugins/PluginId/help</td>
+            <td>Get JSON with instruction for the plugin with ID="PluginId"</td>
+        </tr>
+        <tr>
+            <td>host:port/plugins/PluginId/call?param=value</td>
+            <td>Call plugin by ID="PluginId" with the defined params</td>
+        </tr>
+        <tr>
+            <td>host:port/plugins/className/com.lib.PluginImpl/help</td>
+            <td>Get JSON with instruction for the plugin with class name "com.lib.PluginImpl"</td>
+        </tr>
+        <tr>
+            <td>host:port/plugins/className/com.lib.PluginImpl/call?param=value</td>
+            <td>Call plugin by its class name "com.lib.PluginImpl" with the defined params</td>
+        </tr>
+    </tbody>
+</table>

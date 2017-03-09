@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- *
+ * Plugin that summarizes passed numbers and returns result with specified precision.
  * <p/>
  * Date: 02/27/2017
  *
@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class SummPlugin implements IPlugin {
 
-    private static final String ID = "com.epam.mentoring.plugins.SummPlugin";
+    private static final String ID = "SummPlugin";
     private static final String RESULT = "Double representation of the summ with specified precision";
     private static final String ERROR = "When non-numeric param is found";
 

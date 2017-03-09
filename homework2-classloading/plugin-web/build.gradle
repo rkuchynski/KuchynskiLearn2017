@@ -7,9 +7,19 @@ buildscript {
     }
 }
 
+repositories {
+    maven {
+        url("http://maven.clapper.org/")
+    }
+}
+
 apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile project(":plugin-api")
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: 'logback-classic'
+    }
+    compile("commons-io:commons-io:${commonsIoVersion}")
+    compile("org.clapper:javautil:${clapperVersion}")
 }

@@ -1,7 +1,7 @@
 package com.epam.mentoring.homework2.api;
 
 /**
- *
+ * Plugin-specific exception, it's thrown when plugin call fails.
  * <p/>
  * Date: 02/27/2017
  *

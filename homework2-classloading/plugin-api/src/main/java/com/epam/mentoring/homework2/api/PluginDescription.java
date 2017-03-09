@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- *
+ * Plugin description object. Stores information about how to call plugin and its result and errors.
  * <p/>
  * Date: 02/27/2017
  *

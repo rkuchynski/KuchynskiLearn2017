@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- *
+ * Application entry point.
  * <p/>
  * Date: 02/27/2017
  *
