@@ -1,7 +1,6 @@
 package com.epam.mentoring.homework3.data.wrapper;
 
-import org.apache.commons.lang3.Validate;
-
+import java.io.PrintStream;
 import java.util.Arrays;
 
 /**
@@ -9,36 +8,36 @@ import java.util.Arrays;
  * <p/>
  * Date: 09.03.2017
  *
+ * @param <T> value type.
+ *
  * @author Raman Kuchynski
  */
-public class ArrayWrapper<T> {
+public class ArrayBackedContainer<T> implements IDataContainer<T> {
 
     private Object[] array;
 
-    public ArrayWrapper(int size) {
+    public ArrayBackedContainer(int size) {
         array = new Object[size];
     }
 
-    public ArrayWrapper(T[] array) {
-        Validate.notNull(array);
-        this.array = array.clone();
-    }
-
+    @Override
     @SuppressWarnings("unchecked")
     public T get(int index) {
         return (T) array[index];
     }
 
-    public void set(int index, T value) {
+    @Override
+    public void set(T value, int index) {
         array[index] = value;
     }
 
-    public int size() {
+    @Override
+    public int getSize() {
         return array.length;
     }
 
-    public void printToConsole() {
-        System.out.println(Arrays.toString(array));
+    @Override
+    public void print(PrintStream stream) {
+        stream.println(Arrays.toString(array));
     }
-
 }
