@@ -17,79 +17,30 @@ import java.util.List;
  *
  * @author Raman Kuchynski
  */
-@Service
-public class AccountService implements ICrudService<String, Account> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AccountService.class);
-
-    private static final String SERVICE_PREFIX = "[AccountService]: ";
-
-    private static final String AUDIT_READ_MSG = SERVICE_PREFIX + "Attempting to read account with ID {}.";
-    private static final String AUDIT_READ_NULL_MSG = SERVICE_PREFIX + "Account with id {} does not exist.";
-    private static final String AUDIT_READ_SUCCESS_MSG = SERVICE_PREFIX + "Account with ID {} found: {}.";
-
-    private static final String AUDIT_STORE_MSG = SERVICE_PREFIX + "Storing new account {}.";
-    private static final String AUDIT_STORE_NEW_MSG = SERVICE_PREFIX + "Account {} stored successfully.";
-    private static final String AUDIT_STORE_ERROR_MSG = SERVICE_PREFIX + "Account with id {} already exist.";
-
-    private static final String AUDIT_UPDATE_MSG =
-            SERVICE_PREFIX + "Attempting to update account: id={}, new user name: {}, new money amount: {}.";
-    private static final String AUDIT_UPDATE_SUCCESS_MSG = SERVICE_PREFIX + "Account {} updated successfully.";
-    private static final String AUDIT_UPDATE_ERROR_MSG = SERVICE_PREFIX + "Account {} does not exist, cannot update.";
-
-    private static final String AUDIT_DELETE_MSG = SERVICE_PREFIX + "Deleting account with id {}.";
-    private static final String AUDIT_DELETE_NULL_MSG = SERVICE_PREFIX + "Account with id {} does not exist.";
-    private static final String AUDIT_DELETE_SUCCESS_MSG = SERVICE_PREFIX + "Account {} removed from storage.";
+@Service("accountService")
+public class AccountService implements IAccountService {
 
     @Autowired
     private AccountRepository accountRepository;
 
     @Override
     public Account read(String s) {
-        LOGGER.info(AUDIT_READ_MSG, s);
-        Account account = accountRepository.read(s);
-        if (null == account) {
-            LOGGER.info(AUDIT_READ_NULL_MSG, s);
-        } else {
-            LOGGER.info(AUDIT_READ_SUCCESS_MSG, s, account);
-        }
-        return account;
+        return accountRepository.read(s);
     }
 
     @Override
     public Account store(Account data) {
-        LOGGER.info(AUDIT_STORE_MSG, data);
-        Account result = accountRepository.store(data.getAccountId(), data);
-        if (null == result) {
-            LOGGER.info(AUDIT_STORE_ERROR_MSG, data.getAccountId());
-        } else {
-            LOGGER.info(AUDIT_STORE_NEW_MSG, result);
-        }
-        return result;
+        return accountRepository.store(data.getAccountId(), data);
     }
 
     @Override
     public Account update(Account data) {
-        LOGGER.info(AUDIT_UPDATE_MSG, data.getAccountId(), data.getUserId(), data.getAmount());
-        Account result = accountRepository.update(data.getAccountId(), data);
-        if (null == result) {
-            LOGGER.info(AUDIT_UPDATE_ERROR_MSG, data);
-        } else {
-            LOGGER.info(AUDIT_UPDATE_SUCCESS_MSG, data);
-        }
-        return result;
+        return accountRepository.update(data.getAccountId(), data);
     }
 
     @Override
     public Account delete(String s) {
-        LOGGER.info(AUDIT_DELETE_MSG, s);
-        Account result = accountRepository.delete(s);
-        if (null == result) {
-            LOGGER.info(AUDIT_DELETE_NULL_MSG, s);
-        } else {
-            LOGGER.info(AUDIT_DELETE_SUCCESS_MSG, result);
-        }
-        return result;
+        return accountRepository.delete(s);
     }
 
     @Override

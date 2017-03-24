@@ -1,8 +1,9 @@
 package com.epam.mentoring.homework3.banking.controller;
 
 import com.epam.mentoring.homework3.banking.domain.User;
-import com.epam.mentoring.homework3.banking.service.UserService;
+import com.epam.mentoring.homework3.banking.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,8 @@ import java.util.List;
 public class UserRestController {
 
     @Autowired
-    private UserService userService;
+    @Qualifier("userServiceLoggingProxy")
+    private IUserService userService;
 
     @RequestMapping(value = {"/all", "/all/"}, method = RequestMethod.GET)
     public List<User> getAll() {

@@ -1,8 +1,9 @@
 package com.epam.mentoring.homework3.banking.controller;
 
 import com.epam.mentoring.homework3.banking.domain.Account;
-import com.epam.mentoring.homework3.banking.service.AccountService;
+import com.epam.mentoring.homework3.banking.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,8 @@ import java.util.List;
 public class AccountRestController {
 
     @Autowired
-    private AccountService accountService;
+    @Qualifier("accountServiceLoggingProxy")
+    private IAccountService accountService;
 
     @RequestMapping(value = {"/all", "/all/"}, method = RequestMethod.GET)
     public List<Account> getAll() {
