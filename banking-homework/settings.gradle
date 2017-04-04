@@ -1,0 +1,5 @@
+rootProject.name = 'banking-homework'
+
+include ':banking-app'
+include ':banking-domain'
+include ':banking-embedded-repository'

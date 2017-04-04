@@ -1,0 +1,101 @@
+<h1>Readme</h1>
+
+<table border="2" bordercolor="black">
+    <thead>
+        <tr>
+            <td><b>URL</b></td>
+			<td><b>HTTP method</b></td>
+            <td><b>Request Body</b></td>
+            <td><b>Action</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4"><i>Users</i></td>
+        </tr>
+        <tr>
+            <td>/user/all</td>
+            <td>GET</td>
+            <td>-</td>
+			<td>Gets all users</td>
+        </tr>
+        <tr>
+            <td>/user/all/</td>
+            <td>GET</td>
+            <td>-</td>
+            <td>Gets all users</td>
+        </tr>
+        <tr>
+            <td>/user/{id}/</td>
+            <td>GET</td>
+            <td>-</td>
+            <td>Gets user by its id</td>
+        </tr>
+        <tr>
+            <td>/user/{id}/</td>
+            <td>DELETE</td>
+            <td>-</td>
+            <td>Deletes user by its id</td>
+        </tr>
+        <tr>
+            <td>/user/</td>
+            <td>POST</td>
+            <td>user data: {"userId":integer, "name":string}</td>
+            <td>Updates existing user</td>
+        </tr>
+        <tr>
+            <td>/user/</td>
+            <td>PUT</td>
+            <td>user data: {"name":string}</td>
+            <td>Creates new account</td>
+        </tr>
+        <tr>
+            <td colspan="4"><i>Accounts</i></td>
+        </tr>
+        <tr>
+            <td>/account/all</td>
+            <td>GET</td>
+            <td>-</td>
+            <td>Gets all accounts</td>
+        </tr>
+        <tr>
+            <td>/account/all/</td>
+            <td>GET</td>
+            <td>-</td>
+            <td>Gets all accounts</td>
+        </tr>
+        <tr>
+            <td>/account/{id}/</td>
+            <td>GET</td>
+            <td>-</td>
+            <td>Gets account by its id</td>
+        </tr>
+        <tr>
+            <td>/account/{id}/</td>
+            <td>DELETE</td>
+            <td>-</td>
+            <td>Deletes account by its id</td>
+        </tr>
+        <tr>
+            <td>/account/</td>
+            <td>POST</td>
+            <td>account data: {"accountId":integer, "userId":integer, "amount":double}</td>
+            <td>Updates existing account</td>
+        </tr>
+        <tr>
+            <td>/account/</td>
+            <td>PUT</td>
+            <td>account data: {"userId":integer, "amount":double}</td>
+            <td>Creates new account</td>
+        </tr>
+        <tr>
+            <td colspan="4"><i>Service request</i></td>
+        </tr>
+        <tr>
+            <td>/flush_database</td>
+            <td>GET</td>
+            <td>-</td>
+            <td><b>WARNING:</b> removes all data from database!</td>
+        </tr>
+    </tbody>
+</table>

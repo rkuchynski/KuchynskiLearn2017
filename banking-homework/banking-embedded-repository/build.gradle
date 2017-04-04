@@ -1,0 +1,21 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile(project(":banking-domain"))
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    compile("org.apache.derby:derby:${derbyVersion}")
+}
+
+bootRepackage {
+    enabled = false
+}
