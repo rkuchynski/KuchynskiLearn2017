@@ -7,7 +7,12 @@ buildscript {
     }
 }
 
+apply plugin: 'war'
 apply plugin: 'org.springframework.boot'
+
+bootRepackage {
+    mainClass = 'com.epam.mentoring.homework.banking.BankingApplication'
+}
 
 dependencies {
     compile(project(":banking-domain"))

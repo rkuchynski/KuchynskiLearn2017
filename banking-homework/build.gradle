@@ -4,11 +4,18 @@ allprojects {
 	group = 'com.epam.mentoring.homework'
 }
 
+def checkstyleConfigPath = project.file("${project.projectDir}/tools/checkstyle/checkstyle.xml")
+
 subprojects {
 	apply plugin: 'java'
+	apply plugin: 'checkstyle'
 	
 	repositories {
 		jcenter()
+	}
+
+	checkstyle {
+		configFile = checkstyleConfigPath
 	}
 
 	dependencies {
