@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
+ * Bean to initialize embedded DB.
  * <p/>
  * Date: 04/03/2017
  *
@@ -40,8 +41,8 @@ public class DerbyDatabaseConfigurer implements BeanPostProcessor {
 
     private String dataSourceBean;
 
-    public void setDataSourceBean(String dataSourceBean) {
-        this.dataSourceBean = dataSourceBean;
+    public void setDataSourceBean(String value) {
+        this.dataSourceBean = value;
     }
 
     @Override

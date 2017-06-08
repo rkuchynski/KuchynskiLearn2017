@@ -13,10 +13,13 @@ import org.springframework.context.annotation.ImportResource;
  */
 @SpringBootApplication
 @ImportResource(
-        "classpath:com/epam/mentoring/homework/banking/repository/embedded/banking-app-embedded-repository-context.xml"
-)
+        "classpath:com/epam/mentoring/homework/banking/repository/embedded/banking-app-embedded-repository-context.xml")
 public class BankingApplication {
 
+    /**
+     * Spring boot entry point method.
+     * @param args application args.
+     */
     public static void main(String[] args) {
         SpringApplication.run(BankingApplication.class, args);
     }

@@ -38,7 +38,6 @@ public class UserServiceLoggingProxy implements IUserService {
     private static final String AUDIT_UPDATE_ERROR_MSG = SERVICE_PREFIX + "User {} does not exist, cannot update.";
 
     private static final String AUDIT_DELETE_MSG = SERVICE_PREFIX + "Deleting user with id {}.";
-    private static final String AUDIT_DELETE_NULL_MSG = SERVICE_PREFIX + "User with id {} does not exist.";
     private static final String AUDIT_DELETE_SUCCESS_MSG = SERVICE_PREFIX + "User {} removed from storage.";
 
     private static final String AUDIT_DELETE_ALL_MSG = SERVICE_PREFIX + "Deleting all users...";
@@ -89,7 +88,7 @@ public class UserServiceLoggingProxy implements IUserService {
         LOGGER.info(AUDIT_DELETE_MSG, id);
         User result = userService.delete(id);
         if (null == result) {
-            LOGGER.info(AUDIT_DELETE_NULL_MSG, id);
+            LOGGER.info(AUDIT_READ_NULL_MSG, id);
         } else {
             LOGGER.info(AUDIT_DELETE_SUCCESS_MSG, result);
         }

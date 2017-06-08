@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * Database utility class.
  * <p/>
  * Date: 04/03/2017
  *
@@ -33,6 +34,10 @@ public final class DatabaseUtils {
         throw new AssertionError(CONSTRUCTOR_ERROR_MSG);
     }
 
+    /**
+     * Close JDBC resource.
+     * @param closeableResource closeable resource (connection, result set, etc).
+     */
     public static void closeResource(AutoCloseable closeableResource) {
         if (null != closeableResource) {
             try {
@@ -43,6 +48,12 @@ public final class DatabaseUtils {
         }
     }
 
+    /**
+     * Check if schema exists.
+     * @param connection connection to DB.
+     * @param schemaName schema name to check.
+     * @return {@code true} if specific schema exists.
+     */
     public static boolean schemaExists(Connection connection, String schemaName) {
         Preconditions.checkNotNull(connection);
         Preconditions.checkArgument(StringUtils.isNotBlank(schemaName));
@@ -60,6 +71,13 @@ public final class DatabaseUtils {
         return false;
     }
 
+    /**
+     * Check if table exists within specified schema.
+     * @param connection connection to DB.
+     * @param schemaName schema name to check.
+     * @param tableName table name.
+     * @return {@code true} if specific table exists.
+     */
     public static boolean tableExists(Connection connection, String schemaName, String tableName) {
         Preconditions.checkNotNull(connection);
         Preconditions.checkArgument(StringUtils.isNotBlank(schemaName));

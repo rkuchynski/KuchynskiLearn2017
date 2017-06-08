@@ -12,15 +12,43 @@ import java.util.List;
  * @author Raman Kuchynski
  */
 public interface IUserService {
+
+    /**
+     * Read user by id.
+     * @param id user id.
+     * @return {@link User} instance.
+     */
     User read(Integer id);
 
+    /**
+     * Store new user.
+     * @param data user value.
+     * @return {@link User} instance.
+     */
     User store(User data);
 
+    /**
+     * Update user.
+     * @param data user.
+     * @return {@link User} instance.
+     */
     User update(User data);
 
+    /**
+     * Deletes user by id.
+     * @param id user id.
+     * @return {@link User} instance.
+     */
     User delete(Integer id);
 
+    /**
+     * Read all users.
+     * @return list of all {@link User}s.
+     */
     List<User> readAll();
 
+    /**
+     * Delete all users.
+     */
     void deleteAll();
 }

@@ -38,7 +38,6 @@ public class AccountServiceLoggingProxy implements IAccountService {
     private static final String AUDIT_UPDATE_ERROR_MSG = SERVICE_PREFIX + "Account {} does not exist, cannot update.";
 
     private static final String AUDIT_DELETE_MSG = SERVICE_PREFIX + "Deleting account with id {}.";
-    private static final String AUDIT_DELETE_NULL_MSG = SERVICE_PREFIX + "Account with id {} does not exist.";
     private static final String AUDIT_DELETE_SUCCESS_MSG = SERVICE_PREFIX + "Account {} removed from storage.";
 
     private static final String AUDIT_DELETE_ALL_MSG = SERVICE_PREFIX + "Deleting all accounts...";
@@ -89,7 +88,7 @@ public class AccountServiceLoggingProxy implements IAccountService {
         LOGGER.info(AUDIT_DELETE_MSG, id);
         Account result = accountService.delete(id);
         if (null == result) {
-            LOGGER.info(AUDIT_DELETE_NULL_MSG, id);
+            LOGGER.info(AUDIT_READ_NULL_MSG, id);
         } else {
             LOGGER.info(AUDIT_DELETE_SUCCESS_MSG, result);
         }

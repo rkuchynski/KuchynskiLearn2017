@@ -17,6 +17,7 @@ import static com.epam.mentoring.homework.banking.repository.embedded.impl.util.
 import static com.epam.mentoring.homework.banking.repository.embedded.impl.util.DatabaseUtils.closeResource;
 
 /**
+ * Implementation of {@link IAccountRepository} for Derby Embedded DB.
  * <p/>
  * Date: 04/03/2017
  *
@@ -24,6 +25,8 @@ import static com.epam.mentoring.homework.banking.repository.embedded.impl.util.
  */
 @Component
 public class DerbyAccountRepository implements IAccountRepository {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DerbyAccountRepository.class);
 
     private static final String SELECT_ACCOUNT_BY_ID_SQL =
             "select account_id, user_id, amount from " + BANKING_APP_ACCOUNT_TABLE + " where account_id = ?";
@@ -38,7 +41,9 @@ public class DerbyAccountRepository implements IAccountRepository {
     private static final String DELETE_ALL_ACCOUNTS_SQL =
             "delete from " + BANKING_APP_ACCOUNT_TABLE;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DerbyAccountRepository.class);
+    private static final int INDEX_ID = 1;
+    private static final int INDEX_AMOUNT = 2;
+    private static final int INDEX_ACCOUNT_ID = 3;
 
     private AccountRowMapper rowMapper = new AccountRowMapper();
 
@@ -53,7 +58,7 @@ public class DerbyAccountRepository implements IAccountRepository {
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_ACCOUNT_BY_ID_SQL)) {
 
-            statement.setInt(1, id);
+            statement.setInt(INDEX_ID, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 account = rowMapper.mapResultSetRow(resultSet);
@@ -76,8 +81,8 @@ public class DerbyAccountRepository implements IAccountRepository {
             PreparedStatement statement =
                     connection.prepareStatement(INSERT_ACCOUNT_SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            statement.setInt(1, data.getUserId());
-            statement.setDouble(2, data.getAmount());
+            statement.setInt(INDEX_ID, data.getUserId());
+            statement.setDouble(INDEX_AMOUNT, data.getAmount());
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -98,9 +103,9 @@ public class DerbyAccountRepository implements IAccountRepository {
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(UPDATE_ACCOUNT_SQL)) {
 
-            statement.setInt(1, data.getUserId());
-            statement.setDouble(2, data.getAmount());
-            statement.setInt(3, data.getAccountId());
+            statement.setInt(INDEX_ID, data.getUserId());
+            statement.setDouble(INDEX_AMOUNT, data.getAmount());
+            statement.setInt(INDEX_ACCOUNT_ID, data.getAccountId());
             statement.executeUpdate();
 
         } catch (SQLException exc) {
@@ -120,12 +125,12 @@ public class DerbyAccountRepository implements IAccountRepository {
             PreparedStatement selectStatement = connection.prepareStatement(SELECT_ACCOUNT_BY_ID_SQL);
             PreparedStatement deleteStatement = connection.prepareStatement(DELETE_ACCOUNT_SQL)) {
 
-            selectStatement.setInt(1, id);
+            selectStatement.setInt(INDEX_ID, id);
             resultSet = selectStatement.executeQuery();
             if (resultSet.next()) {
                 account = rowMapper.mapResultSetRow(resultSet);
             }
-            deleteStatement.setInt(1, id);
+            deleteStatement.setInt(INDEX_ID, id);
             successfulDelete = deleteStatement.executeUpdate() > 0;
 
         } catch (SQLException exc) {

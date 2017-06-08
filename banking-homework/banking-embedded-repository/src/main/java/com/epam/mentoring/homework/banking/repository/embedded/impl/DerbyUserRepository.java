@@ -17,6 +17,7 @@ import java.sql.*;
 import java.util.List;
 
 /**
+ * Implementation of {@link IUserRepository} for Derby Embedded DB.
  * <p/>
  * Date: 04/03/2017
  *
@@ -24,6 +25,8 @@ import java.util.List;
  */
 @Component
 public class DerbyUserRepository implements IUserRepository {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DerbyUserRepository.class);
 
     private static final String SELECT_USER_BY_ID_SQL = "select user_id, user_name from " + BANKING_APP_USER_TABLE +
             " where user_id = ?";
@@ -36,9 +39,8 @@ public class DerbyUserRepository implements IUserRepository {
     private static final String SELECT_ALL_USERS_SQL = "select user_id, user_name from " + BANKING_APP_USER_TABLE + "";
     private static final String DELETE_ALL_USERS_SQL = "delete from " + BANKING_APP_USER_TABLE;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DerbyUserRepository.class);
-
-
+    private static final int INDEX_ID = 1;
+    private static final int USER_ID = 2;
 
     private UserRowMapper rowMapper = new UserRowMapper();
 
@@ -54,7 +56,7 @@ public class DerbyUserRepository implements IUserRepository {
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_USER_BY_ID_SQL)) {
 
-            statement.setInt(1, id);
+            statement.setInt(INDEX_ID, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user = rowMapper.mapResultSetRow(resultSet);
@@ -77,7 +79,7 @@ public class DerbyUserRepository implements IUserRepository {
             PreparedStatement statement
                     = connection.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            statement.setString(1, data.getName());
+            statement.setString(INDEX_ID, data.getName());
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -98,8 +100,8 @@ public class DerbyUserRepository implements IUserRepository {
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL)) {
 
-            statement.setString(1, data.getName());
-            statement.setInt(2, data.getUserId());
+            statement.setString(INDEX_ID, data.getName());
+            statement.setInt(USER_ID, data.getUserId());
             statement.executeUpdate();
 
         } catch (SQLException exc) {
@@ -119,12 +121,12 @@ public class DerbyUserRepository implements IUserRepository {
             PreparedStatement selectStatement = connection.prepareStatement(SELECT_USER_BY_ID_SQL);
             PreparedStatement deleteStatement = connection.prepareStatement(DELETE_USER_SQL)) {
 
-            selectStatement.setInt(1, id);
+            selectStatement.setInt(INDEX_ID, id);
             resultSet = selectStatement.executeQuery();
             if (resultSet.next()) {
                 user = rowMapper.mapResultSetRow(resultSet);
             }
-            deleteStatement.setInt(1, id);
+            deleteStatement.setInt(INDEX_ID, id);
             successfulDelete = deleteStatement.executeUpdate() > 0;
 
         } catch (SQLException exc) {

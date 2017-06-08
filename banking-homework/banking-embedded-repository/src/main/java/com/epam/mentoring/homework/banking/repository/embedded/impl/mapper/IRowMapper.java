@@ -14,6 +14,12 @@ import java.sql.SQLException;
  */
 public interface IRowMapper<T> {
 
+    /**
+     * Map result set row to domain object.
+     * @param resultSet result set.
+     * @return domain object value.
+     * @throws SQLException exception happened during conversion.
+     */
     T mapResultSetRow(ResultSet resultSet) throws SQLException;
 
 }

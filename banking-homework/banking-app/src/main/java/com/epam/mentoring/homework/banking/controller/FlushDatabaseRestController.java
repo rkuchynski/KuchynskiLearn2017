@@ -26,6 +26,9 @@ public class FlushDatabaseRestController {
     @Qualifier("accountServiceLoggingProxy")
     private IAccountService accountService;
 
+    /**
+     * Flush embedded DB.
+     */
     @RequestMapping(value = {"/flush_database"}, method = RequestMethod.GET)
     public void flushDatabase() {
         accountService.deleteAll();

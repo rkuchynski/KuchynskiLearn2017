@@ -25,26 +25,50 @@ public class UserRestController {
     @Qualifier("userServiceLoggingProxy")
     private IUserService userService;
 
+    /**
+     * Get all users.
+     * @return list with all {@link User}s.
+     */
     @RequestMapping(value = {"/all", "/all/"}, method = RequestMethod.GET)
     public List<User> getAll() {
         return userService.readAll();
     }
 
+    /**
+     * Updates user.
+     * @param user user to update.
+     * @return updated {@link User} instance.
+     */
     @RequestMapping(value = "/", method = RequestMethod.POST, produces="application/json", consumes="application/json")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
     }
 
+    /**
+     * Gets user by its id.
+     * @param userId user id.
+     * @return {@link User} instance.
+     */
     @RequestMapping(value = "/{userId}/", method = RequestMethod.GET, produces="application/json")
     public User getUserById(@PathVariable("userId") Integer userId) {
         return userService.read(userId);
     }
 
+    /**
+     * Deletes user by its id.
+     * @param userId user id.
+     * @return removed {@link User}.
+     */
     @RequestMapping(value = "/{userId}/", method = RequestMethod.DELETE, produces="application/json")
     public User deleteUserById(@PathVariable("userId") Integer userId) {
         return userService.delete(userId);
     }
 
+    /**
+     * Creates new user.
+     * @param user user.
+     * @return created {@link User} instance.
+     */
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces="application/json", consumes="application/json")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.store(user), HttpStatus.OK);
