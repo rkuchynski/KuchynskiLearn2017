@@ -1,0 +1,21 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+bootRepackage {
+    mainClass = 'com.epam.mentoring.homework.banking.BankingApplication'
+}
+
+dependencies {
+    compile(project(":banking-domain"))
+    compile(project(":banking-embedded-repository"))
+    compile("org.springframework.boot:spring-boot-starter-web")
+}

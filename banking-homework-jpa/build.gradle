@@ -1,0 +1,26 @@
+allprojects {
+	apply plugin: 'idea'
+	
+	group = 'com.epam.mentoring.homework'
+}
+
+def checkstyleConfigPath = project.file("${project.projectDir}/tools/checkstyle/checkstyle.xml")
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'checkstyle'
+	
+	repositories {
+		jcenter()
+	}
+
+	checkstyle {
+		configFile = checkstyleConfigPath
+	}
+
+	dependencies {
+		compile "commons-collections:commons-collections:${commonsCollectionsVersion}"
+		compile "org.apache.commons:commons-lang3:${commonsLangVersion}"
+		compile "com.google.guava:guava:${guavaVersion}"
+	}
+}
