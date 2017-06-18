@@ -22,7 +22,7 @@ public class AccountService implements IAccountService {
     private IAccountRepository accountRepository;
 
     @Override
-    public Account read(Integer id) {
+    public Account read(Long id) {
         return accountRepository.read(id);
     }
 
@@ -37,7 +37,7 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Account delete(Integer id) {
+    public Account delete(Long id) {
         return accountRepository.delete(id);
     }
 

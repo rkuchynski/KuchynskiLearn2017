@@ -18,7 +18,7 @@ public interface IAccountService {
      * @param id account id.
      * @return {@link Account} instance.
      */
-    Account read(Integer id);
+    Account read(Long id);
 
     /**
      * Store new account.
@@ -39,7 +39,7 @@ public interface IAccountService {
      * @param id account id.
      * @return {@link Account} instance.
      */
-    Account delete(Integer id);
+    Account delete(Long id);
 
     /**
      * Read all accounts.

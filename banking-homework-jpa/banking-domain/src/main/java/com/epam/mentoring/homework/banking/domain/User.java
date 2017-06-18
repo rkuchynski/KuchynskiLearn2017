@@ -1,9 +1,15 @@
 package com.epam.mentoring.homework.banking.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * User domain object.
@@ -12,17 +18,30 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author Raman Kuchynski
  */
-public class User {
+@Entity(name = "user")
+@Table(name = "ba_user", schema = "ba_schema")
+public class User implements Serializable {
 
-    private Integer userId;
+    private static final long serialVersionUID = 809024480814581622L;
+
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    @Column(name = "user_name")
     private String name;
 
-    public Integer getUserId() {
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Account> accounts = new LinkedHashSet<>();
+
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer id) {
-        this.userId = id;
+    public void setUserId(Long userIdValue) {
+        this.userId = userIdValue;
     }
 
     public String getName() {
@@ -31,6 +50,14 @@ public class User {
 
     public void setName(String value) {
         this.name = value;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accountSet) {
+        this.accounts = accountSet;
     }
 
     @Override

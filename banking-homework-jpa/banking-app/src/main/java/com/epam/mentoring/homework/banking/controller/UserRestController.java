@@ -50,7 +50,7 @@ public class UserRestController {
      * @return {@link User} instance.
      */
     @RequestMapping(value = "/{userId}/", method = RequestMethod.GET, produces="application/json")
-    public User getUserById(@PathVariable("userId") Integer userId) {
+    public User getUserById(@PathVariable("userId") Long userId) {
         return userService.read(userId);
     }
 
@@ -60,7 +60,7 @@ public class UserRestController {
      * @return removed {@link User}.
      */
     @RequestMapping(value = "/{userId}/", method = RequestMethod.DELETE, produces="application/json")
-    public User deleteUserById(@PathVariable("userId") Integer userId) {
+    public User deleteUserById(@PathVariable("userId") Long userId) {
         return userService.delete(userId);
     }
 

@@ -18,7 +18,7 @@ public interface IUserService {
      * @param id user id.
      * @return {@link User} instance.
      */
-    User read(Integer id);
+    User read(Long id);
 
     /**
      * Store new user.
@@ -39,7 +39,7 @@ public interface IUserService {
      * @param id user id.
      * @return {@link User} instance.
      */
-    User delete(Integer id);
+    User delete(Long id);
 
     /**
      * Read all users.

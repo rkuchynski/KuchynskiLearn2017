@@ -48,7 +48,7 @@ public class AccountRestController {
      * @return {@link Account} instance.
      */
     @RequestMapping(value = "/{accountId}/", method = RequestMethod.GET, produces="application/json")
-    public Account getAccountById(@PathVariable("accountId") Integer accountId) {
+    public Account getAccountById(@PathVariable("accountId") Long accountId) {
         return accountService.read(accountId);
     }
 
@@ -58,7 +58,7 @@ public class AccountRestController {
      * @return removed {@link Account} instance.
      */
     @RequestMapping(value = "/{accountId}/", method = RequestMethod.DELETE, produces="application/json")
-    public Account deleteAccountById(@PathVariable("accountId") Integer accountId) {
+    public Account deleteAccountById(@PathVariable("accountId") Long accountId) {
         return accountService.delete(accountId);
     }
 

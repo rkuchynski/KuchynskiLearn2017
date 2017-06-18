@@ -48,7 +48,7 @@ public class UserServiceLoggingProxy implements IUserService {
     private IUserService userService;
 
     @Override
-    public User read(Integer id) {
+    public User read(Long id) {
         LOGGER.info(AUDIT_READ_MSG, id);
         User user = userService.read(id);
         if (null == user) {
@@ -84,7 +84,7 @@ public class UserServiceLoggingProxy implements IUserService {
     }
 
     @Override
-    public User delete(Integer id) {
+    public User delete(Long id) {
         LOGGER.info(AUDIT_DELETE_MSG, id);
         User result = userService.delete(id);
         if (null == result) {

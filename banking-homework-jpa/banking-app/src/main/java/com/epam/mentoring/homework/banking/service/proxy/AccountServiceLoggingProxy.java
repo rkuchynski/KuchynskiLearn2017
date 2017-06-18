@@ -48,7 +48,7 @@ public class AccountServiceLoggingProxy implements IAccountService {
     private IAccountService accountService;
 
     @Override
-    public Account read(Integer id) {
+    public Account read(Long id) {
         LOGGER.info(AUDIT_READ_MSG, id);
         Account account = accountService.read(id);
         if (null == account) {
@@ -73,7 +73,7 @@ public class AccountServiceLoggingProxy implements IAccountService {
 
     @Override
     public Account update(Account data) {
-        LOGGER.info(AUDIT_UPDATE_MSG, data.getAccountId(), data.getUserId(), data.getAmount());
+        LOGGER.info(AUDIT_UPDATE_MSG, data.getAccountId(), data.getUser(), data.getAmount());
         Account result = accountService.update(data);
         if (null == result) {
             LOGGER.info(AUDIT_UPDATE_ERROR_MSG, data);
@@ -84,7 +84,7 @@ public class AccountServiceLoggingProxy implements IAccountService {
     }
 
     @Override
-    public Account delete(Integer id) {
+    public Account delete(Long id) {
         LOGGER.info(AUDIT_DELETE_MSG, id);
         Account result = accountService.delete(id);
         if (null == result) {

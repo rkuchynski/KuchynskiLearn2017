@@ -22,7 +22,7 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
-    public User read(Integer id) {
+    public User read(Long id) {
         return userRepository.read(id);
     }
 
@@ -37,7 +37,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User delete(Integer id) {
+    public User delete(Long id) {
         return userRepository.delete(id);
     }
 
