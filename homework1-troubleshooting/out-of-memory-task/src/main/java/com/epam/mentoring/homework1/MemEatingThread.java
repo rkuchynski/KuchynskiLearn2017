@@ -1,9 +1,5 @@
 package com.epam.mentoring.homework1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 /**
  * Runnable that consumes memory by creating other instances of {@link MemEatingThread}.
  * <p/>
@@ -13,9 +9,11 @@ import java.util.UUID;
  */
 public class MemEatingThread implements Runnable {
 
+    private static final int MB = 1024 * 1024;
+
     private final int copiesToCreate;
     private final int memoryToOccupy;
-    private List<String> occupiedMemory;
+    private byte[][] occupiedMemory;
 
     public MemEatingThread(int copiesToCreate, int memoryToOccupy) {
         this.copiesToCreate = copiesToCreate;
@@ -24,13 +22,13 @@ public class MemEatingThread implements Runnable {
 
     @Override
     public void run() {
-        occupiedMemory = new ArrayList<>(memoryToOccupy);
+        occupiedMemory = new byte[MB][memoryToOccupy];
+        try {
+            Thread.sleep(200L);
+        } catch (InterruptedException e) { }
         for(int c = 0; c < copiesToCreate; c++) {
             Thread copyThread = new Thread(new MemEatingThread(copiesToCreate, memoryToOccupy));
             copyThread.start();
-        }
-        for(int m = 0; m < memoryToOccupy; m++) {
-            occupiedMemory.add(UUID.randomUUID().toString());
         }
     }
 }

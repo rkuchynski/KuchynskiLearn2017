@@ -18,7 +18,7 @@ public class MemoryConsumingApplication {
         LOGGER.warn("NOTE: This app will produce OutOfMemoryError and store memory dump to " +
                 "\"d:\\temp\\MemoryConsumingApplication.hprof\".");
         LOGGER.warn("Press CTRL+C if you want to suspend application...");
-        Thread.sleep(5000L);
-        new Thread(new MemEatingThread(4, 10000)).start();
+        Thread.sleep(20000L);
+        new Thread(new MemEatingThread(2, 5)).start();
     }
 }
