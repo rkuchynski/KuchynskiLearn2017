@@ -1,26 +1,32 @@
 allprojects {
-	apply plugin: 'idea'
-	
-	group = 'com.epam.mentoring.homework'
+    apply plugin: 'idea'
+
+    group = 'com.epam.mentoring.homework'
 }
 
 def checkstyleConfigPath = project.file("${project.projectDir}/tools/checkstyle/checkstyle.xml")
+def checkstyleSamedir = "${project.projectDir}/tools/checkstyle"
 
 subprojects {
-	apply plugin: 'java'
-	apply plugin: 'checkstyle'
-	
-	repositories {
-		jcenter()
-	}
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
 
-	checkstyle {
-		configFile = checkstyleConfigPath
-	}
+    repositories {
+        jcenter()
+    }
 
-	dependencies {
-		compile "commons-collections:commons-collections:${commonsCollectionsVersion}"
-		compile "org.apache.commons:commons-lang3:${commonsLangVersion}"
-		compile "com.google.guava:guava:${guavaVersion}"
-	}
+    checkstyle {
+        configFile = checkstyleConfigPath
+        configProperties.samedir = checkstyleSamedir
+    }
+
+    dependencies {
+        compile "commons-collections:commons-collections:${commonsCollectionsVersion}"
+        compile "org.apache.commons:commons-lang3:${commonsLangVersion}"
+        compile "com.google.guava:guava:${guavaVersion}"
+        testCompile "junit:junit:${junitVersion}"
+        testCompile "org.powermock:powermock-module-junit4:${powermockVersion}"
+        testCompile "org.powermock:powermock-api-easymock:${powermockVersion}"
+        testCompile "org.easymock:easymock:${easymockVersion}"
+    }
 }
